@@ -7,7 +7,7 @@ A Vue.js component that choose item from a multiple layered structure. eg. Choos
 ## Installation
 
 ```js
-npm i --save-dev vue-multi-layered-choose
+npm i --save vue-multi-layered-choose
 ```
 
 ### Browser
@@ -46,3 +46,7 @@ displayProp | String | The name of the property in path item and content item wh
 isEnterable | Function | A function to judge whether a item is enterable
 
 ### Events
+Event | Description | Parameters
+------------ | ------------ | ------------
+on-enter-item | Enter some item | The item to enter, from pathItems or contentItems
+on-choose-item | Choose the item which is not enterable | The chose item, from contentItems
