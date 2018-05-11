@@ -5,12 +5,14 @@
                :key="index"
                @click="handleClickItem(pathItem)">{{pathItem[displayProp]}}</a>
         </div>
-        <ul class="list">
+        <ul class="list" :style="{ 'max-height': maxHeight ? maxHeight : 'auto' }">
             <li v-for="(contentItem, index) in contentItems"
                 :key="index"
                 :enterable="isEnterable(contentItem)"
                 @click="handleClickItem(contentItem)">
-                <div v-if="isDirectlyChoosable(contentItem)" class="left m-icon m-icon-check-circle"></div>
+                <div v-if="isDirectlyChoosable(contentItem)"
+                     class="left m-icon m-icon-check-circle"
+                     @click.stop="handleDirectlyChooseItem(contentItem)"></div>
                 <span class="left">{{contentItem[displayProp]}}</span>
                 <!--<span v-if="isEnterable(contentItem)" class="right"> > </span>-->
                 <div v-if="isEnterable(contentItem)" class="right m-icon m-icon-right-arrow"></div>
@@ -29,7 +31,8 @@
       contentItems: { type: Array },
       isEnterable: { type: Function },
       displayProp: { type: String },
-      isDirectlyChoosable: { type: Function, default: () => false }
+      isDirectlyChoosable: { type: Function, default: () => false },
+      maxHeight: { type: String }
     },
 
     data() {
@@ -45,6 +48,10 @@
     },
 
     methods: {
+      handleDirectlyChooseItem(item) {
+        this.$emit('on-choose-item', item)
+      },
+
       handleClickItem(item) {
         if(item.type === 'employee') {
           this.$emit('on-choose-item', item)
@@ -96,12 +103,14 @@
         margin-bottom: 0;
         font-size: 0.9em;
         font-weight: bold;
+        overflow-y: scroll;
         li {
             font-size: 1.2em;
             list-style: none;
             padding: 15px 10px;
             border-bottom: 1px solid gray;
             color: $disabledColor;
+            line-height: 1em;
             &[enterable] {
                 &:hover {
                     cursor: pointer;

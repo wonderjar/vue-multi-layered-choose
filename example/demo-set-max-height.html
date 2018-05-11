@@ -10,8 +10,8 @@
         :initial-path-items="initialPathItems"
         :content-items="contentItems"
         :is-enterable="isEnterable"
-        :is-directly-choosable="isDirectlyChoosable"
         display-prop="name"
+        max-height="200px"
         @on-enter-item="handleEnterItem($event)"
         @on-choose-item="handleChooseItem($event)"></multi-layered-choose>
 </div>
@@ -38,12 +38,40 @@
                 id:4,
                 name: 'Employee 2',
                 type: 'employee'
+              }, {
+                id:5,
+                name: 'Employee 3',
+                type: 'employee'
+              }, {
+                id:6,
+                name: 'Employee 4',
+                type: 'employee'
+              }, {
+                id:7,
+                name: 'Employee 5',
+                type: 'employee'
+              }, {
+                id:8,
+                name: 'Employee 6',
+                type: 'employee'
+              }, {
+                id:9,
+                name: 'Employee 7',
+                type: 'employee'
+              }, {
+                id:10,
+                name: 'Employee 8',
+                type: 'employee'
+              }, {
+                id:11,
+                name: 'Employee 9',
+                type: 'employee'
+              }, {
+                id:12,
+                name: 'Employee 10',
+                type: 'employee'
               }
             ]
-          }, {
-            id:3,
-            name: 'Employee 1',
-            type: 'employee'
           }
         ]
       },
@@ -56,10 +84,6 @@
     },
     methods: {
       isEnterable(item) {
-        return item.type === 'group'
-      },
-
-      isDirectlyChoosable(item) {
         return item.type === 'group'
       },
 
@@ -78,6 +102,7 @@
           if('group' === firstLayerItem.type) {
             firstLayerItem.members.forEach(secondLayerItem => {
               if(secondLayerItem.id === item.id) {
+                console.log('secondLayerItem.members', secondLayerItem.members)
                 this.contentItems = secondLayerItem.members;
                 return;
               }

@@ -44,6 +44,8 @@ initialPathItems | Array | Initial path items which will be displayed on the top
 contentItems | Array | The content items which will be displayed on the body. You need change this after every path change
 displayProp | String | The name of the property in path item and content item which is used to display, eg. 'name' of person object
 isEnterable | Function | A function to judge whether a item is enterable
+isDirectlyChoosable | Function | A function to judge whether a item can be choosed directly
+maxHeight | String | If the list height exceed this, the list will be scrollable, eg. '16px'
 
 ### Events
 Event | Description | Parameters
