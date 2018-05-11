@@ -1,6 +1,6 @@
 {
   "name": "vue-multi-layered-choose",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Vue.js component that choose item from a multiple layered structure",
   "main": "dist/vue-multi-layered-choose.js",
   "files": [
@@ -31,9 +31,11 @@
     "babel-runtime": "^6.9.2",
     "css-loader": "^0.28.11",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
     "node-sass": "^4.9.0",
     "rimraf": "^2.6.1",
     "sass-loader": "^7.0.1",
+    "url-loader": "^1.0.1",
     "vue": "^2.2.1",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^11.1.4",
