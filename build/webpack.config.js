@@ -33,6 +33,10 @@ var config = {
             extract: true
           })
         }
+      },
+      {
+        test: /\.(ttf|eot|woff)$/,
+        loader: "url-loader"
       }
       // {
       //   test: /\.css$/,

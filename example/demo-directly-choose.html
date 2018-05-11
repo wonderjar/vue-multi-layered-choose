@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+<div id="app">
+    <multi-layered-choose
+        :initial-path-items="initialPathItems"
+        :content-items="contentItems"
+        :is-enterable="isEnterable"
+        display-prop="name"
+        @on-enter-item="handleEnterItem($event)"
+        @on-choose-item="handleChooseItem($event)"></multi-layered-choose>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../dist/vue-multi-layered-choose.min.js"></script>
+<script type="application/javascript">
+  Vue.use(VueMultiLayeredChoose)
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      groupAllData: {
+        id:0,
+        name: 'WonderJar Company',
+        type: 'group',
+        members: [
+          {
+            id:2,
+            name: 'Department 2',
+            type: 'group',
+            members: [
+              {
+                id:4,
+                name: 'Employee 2',
+                type: 'employee'
+              }
+            ]
+          }, {
+            id:3,
+            name: 'Employee 1',
+            type: 'employee'
+          }
+        ]
+      },
+      initialPathItems: {},
+      contentItems: []
+    },
+    created() {
+      this.initialPathItems = [this.groupAllData]
+      this.contentItems = this.groupAllData.members
+    },
+    methods: {
+      isEnterable(item) {
+        return item.type === 'group'
+      },
+
+      handleEnterItem(item) {
+        console.log('handleEnterItem', item)
+        if(this.groupAllData.id === item.id) {
+          this.contentItems = this.groupAllData.members;
+        }
+
+
+        this.groupAllData.members.forEach(firstLayerItem => {
+          if(firstLayerItem.id === item.id) {
+            this.contentItems = firstLayerItem.members;
+            return;
+          }
+          if('group' === firstLayerItem.type) {
+            firstLayerItem.members.forEach(secondLayerItem => {
+              if(secondLayerItem.id === item.id) {
+                this.contentItems = secondLayerItem.members;
+                return;
+              }
+            })
+          }
+        })
+      },
+      handleChooseItem(item) {
+        console.log('handleChoosetItem', item)
+        alert('choose ' + JSON.stringify(item))
+      }
+    }
+  })
+</script>
+</html>
