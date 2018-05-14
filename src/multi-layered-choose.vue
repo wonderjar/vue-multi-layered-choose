@@ -111,10 +111,8 @@
             border-bottom: 1px solid gray;
             color: $disabledColor;
             line-height: 1em;
-            &[enterable] {
-                &:hover {
-                    cursor: pointer;
-                }
+            &:hover {
+                cursor: pointer;
             }
             &:after {
                 content: '.';
